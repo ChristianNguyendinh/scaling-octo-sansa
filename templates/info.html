@@ -1,0 +1,31 @@
+{% extends 'MasterPages/base.html' %}
+{% load static %}
+{% block title %} Index Page {% endblock %}
+{% block extrascripts %}
+<script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+{% endblock %}
+{% block content %}
+	<div style="background-color:crimson;"><h1>Title bar here1</h1></div>
+	<div id="themaineone" hidden>{{ searchName }}</div>
+	<div id="content"></div>
+
+{% endblock %}
+{% block reactscript %}
+	<script type='text/babel' src="{% static 'js/infoTest.js' %}"></script>
+{% endblock %}
