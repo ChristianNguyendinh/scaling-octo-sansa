@@ -1,0 +1,5 @@
+Django==1.10.2
+djangorestframework==3.4.7
+oauthlib==2.0.0
+requests==2.11.1
+requests-oauthlib==0.7.0
