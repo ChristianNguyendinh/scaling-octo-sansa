@@ -1,15 +1,14 @@
 import urllib, requests, json
 from requests_oauthlib import OAuth1
+from django.conf import settings
 
 def get_name_desc(search_name):
 	url = 'https://kgsearch.googleapis.com/v1/entities:search'
-	key = "<your google api key>"
-	#query = "kanye west"
 	query = search_name
 	fq = urllib.parse.quote(query)
 	param1 = "?query="
 	param2 = "&limit=1&indent=True&key="
-	r = requests.get(url + param1 + fq + param2 + key)
+	r = requests.get(url + param1 + fq + param2 + settings.GOOGLE_API_KEY)
 
 	return_array = ['fill', 'me', 'up'];
 
@@ -26,7 +25,8 @@ def get_recent_tweets(search_name):
 	print(query_string)
 
 	# Move to settings
-	oauth = OAuth1('your twitter oauth credentials');
+	oauth = OAuth1(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_COMSUMER_SECRET
+		, settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_SECRET)
 	
 	url = "https://api.twitter.com/1.1/search/tweets.json?q=" + query_string
 	r = requests.get(url, auth=oauth)
@@ -39,21 +39,19 @@ def get_recent_tweets(search_name):
 
 def get_page_id(search_name):
 	url = "https://graph.facebook.com/"
-	user_token = "<your facebook user access token>"
-
 	query = search_name
 	fq = urllib.parse.quote(query)
 	param1 = "search?q="
 	param2 = "&type=page&access_token="
 
-	r0 = requests.get(url + param1 + fq + param2 + user_token);
+	r0 = requests.get(url + param1 + fq + param2 + settings.FACEBOOK_USER_TOKEN);
 	#print(json.dumps(r0.json(), indent=4))
 	print(str(r0.json()['data'][0]['id']))
 	return str(r0.json()['data'][0]['id'])
 
 def get_profile_pic(page_id):
 	url = "https://graph.facebook.com/"
-	app_token = "<your facebook app access_token>"
+	app_token = settings.FACEBOOK_APP_TOKEN
 
 	#replace with page id - Did it...
 	#ids = "19614945368"
@@ -68,6 +66,7 @@ def get_profile_pic(page_id):
 		return str(imgsrc)
 	except:
 		return ""
+
 
 
 

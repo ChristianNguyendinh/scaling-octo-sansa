@@ -18,6 +18,9 @@ class Artist(models.Model):
 	subName = models.CharField(max_length=128, null=False, blank=False, unique=True, default="None")
 	pageID = models.CharField(max_length=64, null=False, blank=False, unique=True, default="None")
 
+	def __str__(self):
+		return self.name
+
 	def save(self, *args, **kwargs):
 		# subname is name without spaces and in all lowercase. used in url.
 		mylist = get_recent_tweets(self.name.replace(" ", ""))
@@ -47,3 +50,12 @@ class Artist(models.Model):
 			self.image = newImage if newImage != "" else self.backupImage
 
 		super(Artist, self).save(*args, **kwargs)
+
+class Article(models.Model):
+	articleName = models.CharField(max_length=128, null=False, blank=False, unique=True)
+	articleDescription = models.TextField(max_length=5000, null=True, blank=True, default="None")
+	url = models.CharField(max_length=128, null=False, blank=False, default="None")
+	articleImage = models.CharField(max_length=128, null=False, blank=False, unique=True)
+
+	person = models.ForeignKey('Artist', on_delete=models.CASCADE,)
+

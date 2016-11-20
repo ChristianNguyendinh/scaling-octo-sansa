@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '<your secret>'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -124,6 +124,19 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
   os.path.join(BASE_DIR, 'static'),
 ]
+
+# API Keys
+FACEBOOK_USER_TOKEN = ""
+FACEBOOK_APP_TOKEN = ""
+
+GOOGLE_API_KEY = ""
+
+BING_NEWS_API_KEY = ""
+
+TWITTER_CONSUMER_KEY = ""
+TWITTER_COMSUMER_SECRET = ""
+TWITTER_ACCESS_TOKEN = ""
+TWITTER_ACCESS_SECRET = ""
 
 
 

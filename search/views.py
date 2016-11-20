@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from .models import Artist
+from .models import Artist, Article
 from rest_framework import generics
-from .serializers import ArtistSerializer
-from .services import get_recent_tweets
+from .serializers import ArtistSerializer, ArticleSerializer
+from .queries import get_news_articles
 
 ####################
 ## REAL VIEWS ######
@@ -29,7 +29,6 @@ class SubArtistDetail(generics.RetrieveAPIView):
 		sName = self.kwargs['subName']
 		artist = Artist.objects.filter(subName=sName)
 		if (len(artist) == 0):
-			#self.populate_artist(sName)
 			print("warning ------ THIS IS WHERE CALL TO POPULATE GOES! ------- warning")
 			newName = self.kwargs['subName'].replace("-", " ")
 			a = Artist(name=newName)
@@ -37,6 +36,20 @@ class SubArtistDetail(generics.RetrieveAPIView):
 			artist = Artist.objects.filter(subName=a.subName)
 		return artist
 
-	def populate_artist(self, sub):
-		get_recent_tweets("asdf")
+class ArticleDetail(generics.ListAPIView):
+	serializer_class = ArticleSerializer
+	def get_queryset(self):
+		sName = self.kwargs['person']
+		articles = Article.objects.filter(person__subName=sName)
+		if (len(articles) == 0):
+			print("warning ------ POPULATING ARTICLES ------- warning")
+			get_news_articles(sName)
+			articles = Article.objects.filter(person__subName=sName)
+		return articles
+
+
+
+
+
+
 
