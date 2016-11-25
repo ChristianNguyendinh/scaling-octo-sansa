@@ -16,6 +16,8 @@ class InfoTestView(TemplateView):
 		context['searchName'] = self.kwargs['name']
 		return context
 
+class SearchView(TemplateView):
+	template_name = 'search.html'
 
 #class SubArtistDetail(generics.RetrieveAPIView):
 #	lookup_field = 'subName'

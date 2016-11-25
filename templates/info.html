@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %} Index Page {% endblock %}
 {% block extrascripts %}
-<script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
     t = window.twttr || {};
@@ -27,5 +26,5 @@
 
 {% endblock %}
 {% block reactscript %}
-	<script type='text/babel' src="{% static 'js/infoTest.js' %}"></script>
+	<script type='text/javascript' src="{% static 'build/js/transformed_info.js' %}"></script>
 {% endblock %}

@@ -1,3 +1,7 @@
+var React = require("react");
+var ReactDOM = require("react-dom");
+var $ = require("jquery");
+
 // file is only for testing, for real thing, put componenets in folder and use webpack to bundle
 
 var NewsContainer = React.createClass({
@@ -40,8 +44,9 @@ var TwitterContainer = React.createClass({
 var DescriptionContainer = React.createClass({
 	render: function() {
 		return (
-			<div style={{color:"green", width:"63%", height:"50%", marginLeft:"3px", float:"right"}}>
-				<h3>{this.props.desc}</h3>
+			<div style={{color:"green", width:"63%", height:"50%", marginLeft:"3px", float:"right", position:"relative"}}>
+				<h3 style={{position:"absolute", top:"45px"}}>{this.props.desc}</h3>
+				<h3 style={{position:"absolute", bottom:"15px"}}>{this.props.profession}</h3>
 			</div>
 		);
 	}
@@ -52,7 +57,7 @@ var TitleContainer = React.createClass({
 		return (
 			<div style={{color:"yellow", width:"35%", height:"50%", float:"left", overflow:"hidden"}}>
 				<div>
-					<h3>{this.props.name}</h3>
+					<h2 style={{marginTop:"15px", marginBottom:"15px"}}>{this.props.name}</h2>
 					<img src={this.props.image} width="275px"/>
 				</div>
 			</div>
@@ -113,7 +118,7 @@ var InfoContainer = React.createClass({
 			<div id="container">
 				<div id="leftContainer">
 					<TitleContainer name={this.state.data.name} image={this.state.data.image}/>
-					<DescriptionContainer desc={this.state.data.description}/>
+					<DescriptionContainer desc={this.state.data.description} profession={this.state.data.profession}/>
 					<div style={{border:"2px solid red", clear:"both", width:"100%", height:"45%"}}>
 						<p style={{margin:"0px"}}>News</p>
 						<NewsContainer articles={this.state.articleList}/>

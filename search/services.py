@@ -10,11 +10,12 @@ def get_name_desc(search_name):
 	param2 = "&limit=1&indent=True&key="
 	r = requests.get(url + param1 + fq + param2 + settings.GOOGLE_API_KEY)
 
-	return_array = ['fill', 'me', 'up'];
+	return_array = ['please', 'choke', 'me', 'daddy'];
 
 	return_array[0] = r.json()['itemListElement'][0]['result']['name']
 	return_array[1] = r.json()['itemListElement'][0]['result']['detailedDescription']['articleBody']
 	return_array[2] = r.json()['itemListElement'][0]['result']['image']['contentUrl']
+	return_array[3] = r.json()['itemListElement'][0]['result']['description']
 
 	return return_array
 

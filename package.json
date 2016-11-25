@@ -1,0 +1,31 @@
+{
+  "name": "celebsearch",
+  "version": "0.0.1",
+  "description": "just playing around",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristianNguyendinh/scaling-octo-sansa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristianNguyendinh/scaling-octo-sansa/issues"
+  },
+  "homepage": "https://github.com/ChristianNguyendinh/scaling-octo-sansa#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-react": "^6.16.0",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}
