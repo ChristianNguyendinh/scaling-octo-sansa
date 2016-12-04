@@ -1,7 +1,7 @@
 module.exports = {
 	entry: {
 		search: __dirname + '/static/js/search.js',
-		info: __dirname + '/static/js/infoTest.js'
+		info: __dirname + '/static/js/info.js'
 	},
 	module: {
 		loaders: [

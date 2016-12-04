@@ -46,110 +46,13 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
-	var $ = __webpack_require__(178);
 
-	// file is only for testing, for real thing, put componenets in folder and use webpack to bundle
+	var NewsContainer = __webpack_require__(178);
+	var TitleContainer = __webpack_require__(179);
+	var TwitterContainer = __webpack_require__(180);
+	var DescriptionContainer = __webpack_require__(181);
 
-	var NewsContainer = React.createClass({
-		displayName: "NewsContainer",
-
-		render: function () {
-			return React.createElement(
-				"div",
-				{ style: { border: "2px solid orange", float: "left", width: "99%", height: "93%", marginLeft: "4px", marginTop: "4px", overflow: "auto" } },
-				this.props.articles.map(function (article, index) {
-					return React.createElement(
-						"div",
-						{ key: index, style: { border: "2px solid black", float: "left", width: "32%", height: "95%", marginLeft: "4px", marginTop: "4px", overflow: "auto", display: "inline-block" } },
-						React.createElement(
-							"p",
-							{ style: { textAlign: "center" } },
-							article.articleName
-						),
-						React.createElement("img", { src: article.articleImage, alt: "article photo", width: "150", style: { margin: "auto", display: "block" } }),
-						React.createElement(
-							"p",
-							{ style: { textAlign: "center", marginLeft: "5px", marginRight: "5px" } },
-							article.articleDescription
-						)
-					);
-				})
-			);
-		}
-	});
-
-	var TwitterContainer = React.createClass({
-		displayName: "TwitterContainer",
-
-		render: function () {
-			return React.createElement(
-				"div",
-				{ style: { color: "blue", width: "38%", height: "100%", marginLeft: "5px", float: "right" } },
-				React.createElement(
-					"h3",
-					null,
-					"Most Recent Tweets"
-				),
-				this.props.urls.map(function (url, index) {
-					return React.createElement(
-						"div",
-						{ key: index },
-						React.createElement(
-							"blockquote",
-							{ "data-cards": "hidden", className: "twitter-tweet", width: "550" },
-							React.createElement(
-								"a",
-								{ href: "https://twitter.com/" + url },
-								"pce"
-							)
-						)
-					);
-				})
-			);
-		}
-	});
-
-	var DescriptionContainer = React.createClass({
-		displayName: "DescriptionContainer",
-
-		render: function () {
-			return React.createElement(
-				"div",
-				{ style: { color: "green", width: "63%", height: "50%", marginLeft: "3px", float: "right", position: "relative" } },
-				React.createElement(
-					"h3",
-					{ style: { position: "absolute", top: "45px" } },
-					this.props.desc
-				),
-				React.createElement(
-					"h3",
-					{ style: { position: "absolute", bottom: "15px" } },
-					this.props.profession
-				)
-			);
-		}
-	});
-
-	var TitleContainer = React.createClass({
-		displayName: "TitleContainer",
-
-		render: function () {
-			return React.createElement(
-				"div",
-				{ style: { color: "yellow", width: "35%", height: "50%", float: "left", overflow: "hidden" } },
-				React.createElement(
-					"div",
-					null,
-					React.createElement(
-						"h2",
-						{ style: { marginTop: "15px", marginBottom: "15px" } },
-						this.props.name
-					),
-					React.createElement("img", { src: this.props.image, width: "275px" })
-				)
-			);
-		}
-	});
+	var $ = __webpack_require__(182);
 
 	var InfoContainer = React.createClass({
 		displayName: "InfoContainer",
@@ -209,10 +112,10 @@
 					React.createElement(DescriptionContainer, { desc: this.state.data.description, profession: this.state.data.profession }),
 					React.createElement(
 						"div",
-						{ style: { border: "2px solid red", clear: "both", width: "100%", height: "45%" } },
+						{ style: { clear: "both", width: "100%", height: "45%" } },
 						React.createElement(
-							"p",
-							{ style: { margin: "0px" } },
+							"h3",
+							{ style: { margin: "0px 10px" } },
 							"News"
 						),
 						React.createElement(NewsContainer, { articles: this.state.articleList })
@@ -222,6 +125,7 @@
 			);
 		}
 	});
+
 	ReactDOM.render(React.createElement(InfoContainer, null), document.getElementById('content'));
 
 /***/ },
@@ -21633,6 +21537,173 @@
 
 /***/ },
 /* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var NewsContainer = React.createClass({
+		displayName: "NewsContainer",
+
+		propTypes: {
+			article: React.PropTypes.array.isRequired
+		},
+		render: function () {
+			return React.createElement(
+				"div",
+				{ style: { float: "left", width: "99%", height: "93%", marginLeft: "4px", marginTop: "4px", overflow: "auto" } },
+				this.props.articles.map(function (article, index) {
+					return React.createElement(
+						"div",
+						{ key: index, style: { border: "2px solid #c9c9c9", float: "left", width: "32%", height: "95%", marginLeft: "4px", marginTop: "4px", overflow: "auto", display: "inline-block" } },
+						React.createElement(
+							"p",
+							{ style: { textAlign: "center", marginLeft: "10px", marginRight: "10px" } },
+							article.articleName
+						),
+						React.createElement("img", { src: article.articleImage, alt: "article photo", style: { width: "95%", margin: "auto", display: "block" } }),
+						React.createElement(
+							"p",
+							{ style: { textAlign: "center", marginLeft: "5px", marginRight: "5px" } },
+							article.articleDescription
+						)
+					);
+				})
+			);
+		}
+	});
+
+	module.exports = NewsContainer;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var TitleContainer = React.createClass({
+		displayName: "TitleContainer",
+
+		propTypes: {
+			name: React.PropTypes.string.isRequired,
+			image: React.PropTypes.string.isRequired
+		},
+		render: function () {
+			return React.createElement(
+				"div",
+				{ style: { width: "35%", height: "50%", float: "left", overflow: "hidden" } },
+				React.createElement(
+					"div",
+					null,
+					React.createElement(
+						"div",
+						{ style: { width: "100%", marginTop: "15px", marginBottom: "15px" } },
+						React.createElement("div", { className: "testme", style: { width: "250px", marginLeft: "12px", height: "5px", backgroundColor: "blue" } }),
+						React.createElement(
+							"h2",
+							{ style: { margin: "2px 2px 2px 15px" } },
+							this.props.name
+						),
+						React.createElement("div", { className: "testme", style: { width: "250px", marginLeft: "12px", height: "5px", backgroundColor: "blue" } })
+					),
+					React.createElement("img", { src: this.props.image, width: "275px", style: { marginLeft: "5px" } })
+				)
+			);
+		}
+	});
+
+	module.exports = TitleContainer;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var TwitterContainer = React.createClass({
+		displayName: "TwitterContainer",
+
+		propTypes: {
+			urls: React.PropTypes.array.isRequired
+		},
+		render: function () {
+			return React.createElement(
+				"div",
+				{ style: { color: "blue", width: "38%", height: "100%", marginLeft: "5px", float: "right" } },
+				React.createElement(
+					"h3",
+					null,
+					"Most Recent Tweets"
+				),
+				this.props.urls.map(function (url, index) {
+					return React.createElement(
+						"div",
+						{ key: index },
+						React.createElement(
+							"blockquote",
+							{ "data-cards": "hidden", className: "twitter-tweet", width: "550" },
+							React.createElement(
+								"a",
+								{ href: "https://twitter.com/" + url },
+								"pce"
+							)
+						)
+					);
+				})
+			);
+		}
+	});
+
+	module.exports = TwitterContainer;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var DescriptionContainer = React.createClass({
+		displayName: "DescriptionContainer",
+
+		propTypes: {
+			desc: React.PropTypes.string.isRequired,
+			profession: React.PropTypes.string.isRequired
+		},
+		render: function () {
+			return React.createElement(
+				"div",
+				{ style: { width: "63%", height: "50%", marginLeft: "3px", float: "right", position: "relative" } },
+				React.createElement(
+					"div",
+					{ style: { height: "35px", width: "100%", marginTop: "50px", backgroundColor: "#ff6666" } },
+					React.createElement(
+						"h3",
+						{ style: { paddingTop: "5px", paddingLeft: "5px" } },
+						"Information"
+					),
+					React.createElement("div", { style: { height: "5px", width: "100%", margin: "-7px 0px 0px 0px", backgroundColor: "#ff2222" } })
+				),
+				React.createElement(
+					"div",
+					{ style: { backgroundColor: "white", height: "70%" } },
+					React.createElement(
+						"h4",
+						{ style: { position: "relative", top: "5px", padding: "0px 10px" } },
+						this.props.desc
+					),
+					React.createElement(
+						"h4",
+						{ style: { position: "absolute", bottom: "15px", padding: "0px 10px" } },
+						this.props.profession
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = DescriptionContainer;
+
+/***/ },
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
