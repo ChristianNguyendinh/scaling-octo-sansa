@@ -5,9 +5,6 @@ from rest_framework import generics
 from .serializers import ArtistSerializer, ArticleSerializer
 from .queries import get_news_articles
 
-####################
-## REAL VIEWS ######
-####################
 
 class InfoTestView(TemplateView):
 	template_name = 'info.html'
@@ -36,6 +33,7 @@ class SubArtistDetail(generics.RetrieveAPIView):
 			a = Artist(name=newName)
 			a.save()
 			artist = Artist.objects.filter(subName=a.subName)
+		print("DONE POPULATING ARTIST")
 		return artist
 
 class ArticleDetail(generics.ListAPIView):

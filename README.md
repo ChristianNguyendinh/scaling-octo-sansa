@@ -16,16 +16,18 @@ npm run build       (watches for changes and recompiles)
 ----------------------------------------------------------
 
 TODO:
-- facebook page search uses user api key, that is annoying. Find another source for profile pic or just use google image search.
 - convert to ES6
 - have twitter refresh everytime page is loaded
-- have news articles refresh once a day? -- have to delete old ones
-- Handle API failures more gracefully
-  
+- have news articles refresh once a day? -- have to delete old ones -- put in queries 
+		-- Entry.objects.filter(pub_date__year=2005).delete()
+
 ######
 REAL TODOS:
 ######
 - add actual css/bootstrap
+- switch to imgur for picture
+- Handle API failures more gracefully
 
 Future:
 - use a custom sql database for practice?
+- some stuff with d3

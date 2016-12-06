@@ -57,7 +57,7 @@
 		handleSubmit: function (e) {
 			e.preventDefault();
 			// replace space between words,
-			var fstr = this.state.text.trim().replace(" ", "-").replace(/ /g, "");
+			var fstr = this.state.text.trim().replace(" ", "-").replace(/ /g, "").toLowerCase();
 			var url = "http://127.0.0.1:8000/search/info/" + fstr;
 			//console.log(url);
 			//if (/^[a-z- ]+$/i.test(fstr))

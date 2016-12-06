@@ -10,18 +10,24 @@ def get_news_articles(search_name):
 	url = "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=" + q + "&originalImg=true&mkt=en-us"
 	
 	r = requests.get(url, headers=headers)
-	print(json.dumps(r.json(), indent=4))
+	#print(json.dumps(r.json(), indent=4))
 
 	articleList = r.json()['value'];
 	i = 1
 	for article in articleList :
 		if (i > 3):
 			break
-		#try:
+
+		if 'image' not in article:
+			continue
+
 		related_artist = Artist.objects.get(subName=search_name)
 		a = Article(articleName=article['name'], articleDescription=article['description'], 
 			url=article['url'], articleImage=article['image']['contentUrl'], person=related_artist)
 		a.save()
+
+		#try:
+
 			#print(article['name'])
 			#print(article['description'])
 			#print(article['url'])

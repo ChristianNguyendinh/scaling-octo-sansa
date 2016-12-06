@@ -32,19 +32,22 @@ var InfoContainer = React.createClass({
 				error: function(xhr, status, err) {
 					console.error("http://127.0.0.1:8000/search/api/taylor-swift.json", status, err.toString());
 				}.bind(this)
-			}),
+			})
+		).then(function() {
 			$.ajax({
 				url: "http://127.0.0.1:8000/search/api/articles/" + document.getElementById('themaineone').innerHTML + ".json",
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
+					//alert("loaded articles")
 					articles = data;
+					this.setState({data: dataList, listUrls: urls, articleList: articles});
 				}.bind(this),
 				error: function(xhr, status, err) {
 					console.error("http://127.0.0.1:8000/search/api/taylor-swift.json", status, err.toString());
 				}.bind(this)
-			}),
-		).then(function() {
+			})
+
 			this.setState({data: dataList, listUrls: urls, articleList: articles});
 			console.log(this.state.articleList);
 		}.bind(this));
