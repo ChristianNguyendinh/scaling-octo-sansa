@@ -6,6 +6,8 @@ from . import views
 app_name = 'search'
 urlpatterns = [
 	url(r'^info/(?P<name>[\w-]+)/$', views.InfoTestView.as_view()),
+	url(r'^about/', views.AboutView.as_view()),
+	url(r'^contact/', views.ContactView.as_view()),
 	url(r'^$', views.SearchView.as_view()),
 
 	#json calls

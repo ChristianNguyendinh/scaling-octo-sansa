@@ -20,17 +20,20 @@ var PlaceHolder = React.createClass({
 	},
 	render: function() {
 		return (
+			<center>
 			<div style={{width:"100%", height:"100%", position:"relative"}}>
 				<div style={{width:"300px", height:"200px", position:"absolute", top:"30%", right:"40%"}}>
-					<h1 style={{color:"#000"}}>Enter a name to search: </h1>
+					<h1 style={{color:"#000", marginBottom:"20px"}}>Enter a name to search: </h1>
 					<form onSubmit={this.handleSubmit}>
 						<input type="text" value={this.state.text} onChange={this.handleChange} pattern="[A-Za-z- ]+" required/>
+						<br/>
 						<br/>
 						<input type="submit" value="search"/>
 						<p></p>
 					</form>
 				</div>
 			</div>
+			</center>
 		);
 	}
 });

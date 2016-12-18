@@ -59,6 +59,16 @@ def get_picture(search_name):
 	return "" if most_popular == None else most_popular['link']
 	#print(most_popular['link'])
 
+def get_news_articles(search_name):
+	headers = {"Ocp-Apim-Subscription-Key": settings.BING_NEWS_API_KEY}
+	q = urllib.parse.quote(search_name)
+	url = "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=" + q + "&originalImg=true&mkt=en-us"
+	
+	r = requests.get(url, headers=headers)
+	#print(json.dumps(r.json(), indent=4))
+
+	return r.json()['value']
+
 # ---------------------------------------------------------------
 # Searching facebook pages for a profile pic was bad because the
 # key had to be regenerated frequently, and it was unreliable.

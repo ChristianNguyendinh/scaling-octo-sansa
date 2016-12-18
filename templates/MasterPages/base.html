@@ -16,6 +16,34 @@
 	{% endblock %}
 </head>
 <body>
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" id="myTitle" href="/search/">Celeb Search</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/search/">Home</a></li>
+					<li><a href="/search/about/">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Test<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Design</a></li>
+							<li><a href="#">asdf</a></li>
+							<li><a href="#">Other</a></li>
+						</ul>
+					</li>
+					<li><a href="/search/contact/">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 	{% block content %}
 	{% endblock %}
 

@@ -1,7 +1,7 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background-color: #f0f0f0;
+	background-color: #f8f8f8;
 }
 
 h1 {
@@ -19,7 +19,28 @@ h1 {
 }
 
 .dropdown-menu {
-	background-color:#0f0
+	background-color:#0ff;
+}
+
+.navbar {
+	background-color:#f66;
+	margin-bottom: 1px;
+}
+
+#myTitle {
+	color:#000;
+}
+
+.nav.navbar-nav.navbar-right li a {
+	color:#000;
+}
+
+.nav.navbar-nav.navbar-right li:hover {
+	background-color:#f8f8f8;
+}
+
+.nav.navbar-nav.navbar-right li a:hover {
+	color:#000;
 }
 
 .searchPage {

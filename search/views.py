@@ -1,9 +1,11 @@
+import datetime
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.utils import timezone
 from .models import Artist, Article
 from rest_framework import generics
 from .serializers import ArtistSerializer, ArticleSerializer
-from .queries import get_news_articles
+from .queries import populate_news_articles, populate_artist, refresh_tweets
 
 
 class InfoTestView(TemplateView):
@@ -16,11 +18,20 @@ class InfoTestView(TemplateView):
 class SearchView(TemplateView):
 	template_name = 'search.html'
 
+class AboutView(TemplateView):
+	template_name = 'about.html'
+
+class ContactView(TemplateView):
+	template_name = 'contact.html'
+
 #class SubArtistDetail(generics.RetrieveAPIView):
 #	lookup_field = 'subName'
 #	queryset = Artist.objects.all()
 #	serializer_class = ArtistSerializer
 
+#################
+## API VIEWS ####
+#################
 class SubArtistDetail(generics.RetrieveAPIView):
 	lookup_field = 'subName'
 	serializer_class = ArtistSerializer
@@ -29,10 +40,13 @@ class SubArtistDetail(generics.RetrieveAPIView):
 		artist = Artist.objects.filter(subName=sName)
 		if (len(artist) == 0):
 			print("warning ------ THIS IS WHERE CALL TO POPULATE GOES! ------- warning")
-			newName = self.kwargs['subName'].replace("-", " ")
-			a = Artist(name=newName)
-			a.save()
-			artist = Artist.objects.filter(subName=a.subName)
+			new_name = self.kwargs['subName'].replace("-", " ")
+			sub_name = populate_artist(new_name)
+			artist = Artist.objects.filter(subName=sub_name)
+		else:
+			tweet_date_delta = timezone.now() - artist[0].tweet_added_date
+			if tweet_date_delta.seconds > 300: # refresh tweets if last refresh was over 5 minutes ago
+				refresh_tweets(sName.lower())
 		print("DONE POPULATING ARTIST")
 		return artist
 
@@ -43,8 +57,17 @@ class ArticleDetail(generics.ListAPIView):
 		articles = Article.objects.filter(person__subName=sName)
 		if (len(articles) == 0):
 			print("warning ------ POPULATING ARTICLES ------- warning")
-			get_news_articles(sName)
+			populate_news_articles(sName)
 			articles = Article.objects.filter(person__subName=sName)
+		else:
+			date_delta = timezone.now() - articles[0].added_date
+			if date_delta.days != 0: # Refresh articles if more than a day old
+				print("warning ------ REFRESHING ARTICLES ------- warning")
+				# Delete old articles and replace with new ones
+				Article.objects.filter(person__subName=sName).delete()
+				populate_news_articles(sName)
+				articles = Article.objects.filter(person__subName=sName)
+
 		return articles
 
 

@@ -1,0 +1,23 @@
+{% extends 'MasterPages/base.html' %}
+{% block title %} About Page {% endblock %}
+{% block extrascripts %}
+{% endblock %}
+{% block content %}
+<center>
+	<div style="font-family:Courier; width:70%; margin-top:30px; padding:10px 50px 50px; background-color:#ffffff; border-radius:25px; box-shadow: -10px 10px 5px #ccc;">
+		<h1>About</h1>
+		<div display="inline-block" style="margin:20px">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hollywood_Sign_(Zuschnitt).jpg/1280px-Hollywood_Sign_(Zuschnitt).jpg" height="150px"/>
+			<img src="http://i.stack.imgur.com/jBli3.png" height="150px" style="margin-left:25px"/>
+			<img src="https://www.djangoproject.com/s/img/icon-touch.e4872c4da341.png" height="150px" style="margin-left:25px"/>
+			<img src="http://vincent.billey.me/talks/react-putting-js-in-your-face/assets/react-logo.png" height="150px" style="margin-left:25px"/>
+		</div>
+		<p>Web application that scrapes APIs to gather data about a person.</p>
+		<p>Right now gets data from <a href="https://developers.google.com/knowledge-graph/" target="__blank">Google</a>'s knowledge graph API, <strike>Facebook's Graph API,</strike> <a href="https://api.imgur.com/endpoints" target="__blank">Imgur</a>'s API, <a href="https://www.bing.com/partners/developers" target="__blank">Bing</a>'s (News) Search API, and <a href="https://dev.twitter.com/docs" target="__blank">Twitter</a>'s API.
+		<p>It's called "Celeb Search" because if you try to search for a person without enough publicly available information from the various APIs, it crashes :P</p>
+		<p>Mainly this was just for me to practice django, react/js, rest APIs, and python</p>
+	</div>
+</center>
+{% endblock %}
+{% block reactscript %}
+{% endblock %}

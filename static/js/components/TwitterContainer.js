@@ -2,12 +2,13 @@ var React = require("react");
 
 var TwitterContainer = React.createClass({
 	propTypes: {
-		urls: React.PropTypes.array.isRequired
+		tweetName: React.PropTypes.string,
+		urls: React.PropTypes.array
 	},
 	render: function() {
 		return (
-			<div style={{color:"blue", width:"38%", height:"100%", marginLeft:"5px", float:"right"}}>
-				<h3>Most Recent Tweets</h3>
+			<div style={{color:"#FF6666", width:"38%", height:"100%", marginLeft:"5px", float:"right"}}>
+				<h3>#{this.props.tweetName}</h3>
 				{this.props.urls.map(function(url, index) {
 					return (
 						<div key={index}>

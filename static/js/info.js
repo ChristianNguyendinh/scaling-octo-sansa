@@ -12,6 +12,10 @@ var InfoContainer = React.createClass({
 	getInitialState: function() {
 		return {data: [], listUrls: [], articleList: []};
 	},
+	getTweetName: function() {
+		var name = document.getElementById('themaineone').innerHTML
+		return name.replace("-", "").toLowerCase()
+	},
 	getData: function() {
 		console.log('polling');
 		var dataList = [];
@@ -48,7 +52,7 @@ var InfoContainer = React.createClass({
 				}.bind(this)
 			})
 
-			this.setState({data: dataList, listUrls: urls, articleList: articles});
+			//this.setState({data: dataList, listUrls: urls, articleList: articles});
 			console.log(this.state.articleList);
 		}.bind(this));
 	},
@@ -65,12 +69,12 @@ var InfoContainer = React.createClass({
 				<div id="leftContainer">
 					<TitleContainer name={this.state.data.name} image={this.state.data.image}/>
 					<DescriptionContainer desc={this.state.data.description} profession={this.state.data.profession}/>
-					<div style={{clear:"both", width:"100%", height:"45%"}}>
-						<h3 style={{margin:"0px 10px"}}>News</h3>
+					<div style={{clear:"both", width:"100%", height:"45%", position:"relative", top:"20px"}}>
+						<h3 style={{margin:"15px 10px 0px"}}>News</h3>
 						<NewsContainer articles={this.state.articleList}/>
 					</div>
 				</div>
-				<TwitterContainer urls={this.state.listUrls}/>
+				<TwitterContainer tweetName={this.getTweetName()} urls={this.state.listUrls}/>
 			</div>
 		);
 	}
